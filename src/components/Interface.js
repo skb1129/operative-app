@@ -1,42 +1,57 @@
 import React, { Component } from 'react';
 import Message from './Message';
+import Input from './Input';
 
 class Interface extends Component {
   state = {
-    data: {
-      portal1: [
-        {
-          user: 'p1test1',
-          content: 'Mah Nigga!'
-        }, {
-          user: 'p1test2',
-          content: 'Yo! Wassup Beyotch'
-        }, {
-          user: 'p1test3',
-          content: 'Hey! Dudes'
-        }
-      ],
-      portal2: [
-        {
-          user: 'p2test1',
-          content: 'Mah Nigga!'
-        }, {
-          user: 'p2test2',
-          content: 'Yo! Wassup Beyotch'
-        }, {
-          user: 'p2test3',
-          content: 'Hey! Dudes'
-        }
-      ]
-    }
+    user: 'p2test',
+    portal1: [
+      {
+        id: 1,
+        user: 'p1test1',
+        content: 'Mah Nigga!'
+      }, {
+        id: 2,
+        user: 'p1test2',
+        content: 'Yo! Wassup Beyotch'
+      }, {
+        id: 3,
+        user: 'p1test3',
+        content: 'Hey! Dudes'
+      }
+    ],
+    portal2: [
+      {
+        id: 1,
+        user: 'p2test1',
+        content: 'Mah Nigga!'
+      }, {
+        id: 2,
+        user: 'p2test2',
+        content: 'Yo! Wassup Beyotch'
+      }, {
+        id: 3,
+        user: 'p2test3',
+        content: 'Hey! Dudes'
+      }
+    ]
+  }
+
+  addMessage = (message) => {
+    message.id = this.state[this.props.match.params.portal].length + 1;
+    message.user = this.state.user;
+    this.setState((prevState) => ({
+      [this.props.match.params.portal]: prevState[this.props.match.params.portal].concat([message])
+    }))
   }
 
   render() {
     return (
       <div>
-        {this.state.data[this.props.match.params.portal].map((message) => (
-          <Message message={message} />
+        {this.state[this.props.match.params.portal].map((message) => (
+          <Message message={message} key={message.id}/>
         ))}
+        <Input sendMessage={this.addMessage} />
       </div>
     )
   }
