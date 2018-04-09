@@ -4,26 +4,7 @@ const config = require('./config')
 const db = {}
 
 const defaultData = {
-  messages: [
-    {
-      id: 1,
-      user: 'Ryan Florence',
-      content: 'ryan@reacttraining.com',
-      portal: 'p1'
-    },
-    {
-      id: 2,
-      user: 'Michael Jackson',
-      content: 'michael@reacttraining.com',
-      portal: 'p1'
-    },
-    {
-      id: 3,
-      user: 'Tyler McGinnis',
-      content: 'tyler@reacttraining.com',
-      portal: 'p1'
-    }
-  ]
+  messages: []
 }
 
 const get = (token) => {
