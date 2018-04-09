@@ -28,9 +28,11 @@ class Interface extends Component {
   }
 
   componentDidMount() {
-    MessagesAPI.getAll().then((messages) => {
-      this.setState({messages})
-    })
+    setInterval(() => {
+      MessagesAPI.getAll().then((messages) => {
+        this.setState({messages})
+      });
+    }, 1000);
   }
 
   render() {
