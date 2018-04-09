@@ -3,39 +3,7 @@ import Message from './Message';
 import Input from './Input';
 
 class Interface extends Component {
-  state = {
-    user: 'p2test',
-    portal1: [
-      {
-        id: 1,
-        user: 'p1test1',
-        content: 'Mah Nigga!'
-      }, {
-        id: 2,
-        user: 'p1test2',
-        content: 'Yo! Wassup Beyotch'
-      }, {
-        id: 3,
-        user: 'p1test3',
-        content: 'Hey! Dudes'
-      }
-    ],
-    portal2: [
-      {
-        id: 1,
-        user: 'p2test1',
-        content: 'Mah Nigga!'
-      }, {
-        id: 2,
-        user: 'p2test2',
-        content: 'Yo! Wassup Beyotch'
-      }, {
-        id: 3,
-        user: 'p2test3',
-        content: 'Hey! Dudes'
-      }
-    ]
-  }
+  state = {}
 
   addMessage = (message) => {
     message.id = this.state[this.props.match.params.portal].length + 1;
@@ -46,7 +14,12 @@ class Interface extends Component {
   }
 
   componentWillMount() {
+    let username = prompt('Username:');
+    while (!username || !username.trim()) {
+      username = prompt('Username:');
+    }
     this.setState({
+      user: username,
       [this.props.match.params.portal]: []
     });
   }
