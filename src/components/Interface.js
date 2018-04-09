@@ -25,16 +25,13 @@ class Interface extends Component {
       user: username,
       messages: []
     });
-  }
-
-  componentDidMount() {
     setInterval(() => {
       MessagesAPI.getAll().then((messages) => {
         this.setState({messages})
       });
     }, 1000);
   }
-
+  
   render() {
     const showingMessages = this.state.messages.filter((message) => message.portal === this.props.match.params.portal)
     return (
