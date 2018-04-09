@@ -31,9 +31,11 @@ class Interface extends Component {
       });
     }, 1000);
   }
-  
+
   render() {
-    const showingMessages = this.state.messages.filter((message) => message.portal === this.props.match.params.portal)
+    const showingMessages = this.state.messages.filter((message) => (
+      message.portal === this.props.match.params.portal
+    ));
     return (
       <div>
         {showingMessages.map((message) => (
