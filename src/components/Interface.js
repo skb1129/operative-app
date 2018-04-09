@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import Message from './Message';
 import Input from './Input';
+import * as MessagesAPI from '../utils/MessagesAPI';
 
 class Interface extends Component {
   state = {}
 
   addMessage = (message) => {
-    message.id = this.state[this.props.match.params.portal].length + 1;
     message.user = this.state.user;
-    this.setState((prevState) => ({
-      [this.props.match.params.portal]: prevState[this.props.match.params.portal].concat([message])
-    }));
+    message.portal = this.props.match.params.portal;
+    MessagesAPI.create(message).then(message => {
+      this.setState(prevState => ({
+        messages: prevState.messages.concat([message])
+      }))
+    })
   }
 
   componentWillMount() {
@@ -20,14 +23,21 @@ class Interface extends Component {
     }
     this.setState({
       user: username,
-      [this.props.match.params.portal]: []
+      messages: []
     });
   }
 
+  componentDidMount() {
+    MessagesAPI.getAll().then((messages) => {
+      this.setState({messages})
+    })
+  }
+
   render() {
+    const showingMessages = this.state.messages.filter((message) => message.portal === this.props.match.params.portal)
     return (
       <div>
-        {this.state[this.props.match.params.portal].map((message) => (
+        {showingMessages.map((message) => (
           <Message message={message} key={message.id}/>
         ))}
         <Input sendMessage={this.addMessage} />
