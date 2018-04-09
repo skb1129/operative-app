@@ -42,7 +42,13 @@ class Interface extends Component {
     message.user = this.state.user;
     this.setState((prevState) => ({
       [this.props.match.params.portal]: prevState[this.props.match.params.portal].concat([message])
-    }))
+    }));
+  }
+
+  componentWillMount() {
+    this.setState({
+      [this.props.match.params.portal]: []
+    });
   }
 
   render() {
