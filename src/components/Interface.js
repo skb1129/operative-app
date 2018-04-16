@@ -52,7 +52,7 @@ class Interface extends Component {
       message.portal === this.props.match.params.portal
     ));
     return (
-      <div>
+      <div className='messages-container'>
         {showingMessages.map((message) => (
           <Message message={message} key={message.id}/>
         ))}

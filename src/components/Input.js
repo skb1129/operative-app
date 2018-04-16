@@ -13,9 +13,9 @@ const Input = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <input type='text' name='content' />
-        <button>Send</button>
+      <div className='form-container'>
+        <textarea className='message-input' name='content' rows='1'></textarea>
+        <button className='send-button'>Send</button>
       </div>
     </form>
   )

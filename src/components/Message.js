@@ -1,8 +1,13 @@
 import React from 'react';
 
 const Message = (props) => (
-  <div>
-    <p>{props.message.user} | {props.message.content}</p>
+  <div className='message-container'>
+    <div className='username'>
+      <p>{props.message.user}</p>
+    </div>
+    <div className='message-content'>
+      <pre>{props.message.content}</pre>
+    </div>
   </div>
 )
 
