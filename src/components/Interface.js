@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import Message from './Message';
 import Input from './Input';
-import * as MessagesAPI from '../utils/MessagesAPI';
+import * as firebase from 'firebase';
+
+var config = {
+  apiKey: "AIzaSyDtEWqJa5b4TmcHiODT2iKNfHux-BjoWeE",
+  authDomain: "operative-app-8ab56.firebaseapp.com",
+  databaseURL: "https://operative-app-8ab56.firebaseio.com",
+  projectId: "operative-app-8ab56",
+  storageBucket: "operative-app-8ab56.appspot.com",
+  messagingSenderId: "51023518060"
+};
+
+firebase.initializeApp(config);
+
+const messagesRef = firebase.database().ref().child('messages');
 
 class Interface extends Component {
   state = {}
@@ -9,11 +22,10 @@ class Interface extends Component {
   addMessage = (message) => {
     message.user = this.state.user;
     message.portal = this.props.match.params.portal;
-    MessagesAPI.create(message).then(message => {
-      this.setState(prevState => ({
-        messages: prevState.messages.concat([message])
-      }))
-    })
+    message.id = this.state.messages.length + 1;
+    const update = {};
+    update[message.id - 1]= message;
+    messagesRef.update(update);
   }
 
   componentWillMount() {
@@ -25,11 +37,14 @@ class Interface extends Component {
       user: username,
       messages: []
     });
-    setInterval(() => {
-      MessagesAPI.getAll().then((messages) => {
-        this.setState({messages})
-      });
-    }, 1000);
+  }
+
+  componentDidMount() {
+    messagesRef.on('value', snap => {
+      this.setState({
+        messages: snap.val()
+      })
+    })
   }
 
   render() {
