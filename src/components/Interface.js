@@ -4,12 +4,10 @@ import Input from './Input';
 import * as firebase from 'firebase';
 
 const config = {
-  apiKey: 'AIzaSyDtEWqJa5b4TmcHiODT2iKNfHux-BjoWeE',
-  authDomain: 'operative-app-8ab56.firebaseapp.com',
-  databaseURL: 'https://operative-app-8ab56.firebaseio.com',
-  projectId: 'operative-app-8ab56',
-  storageBucket: 'operative-app-8ab56.appspot.com',
-  messagingSenderId: '51023518060'
+  /**
+   * Put your firebase instance's config here.
+   * Make sure there's a 'messages' object in the database.
+   */
 };
 
 firebase.initializeApp(config);

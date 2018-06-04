@@ -1,9 +1,8 @@
 {
   "name": "operative-app",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "express": "^4.16.3",
     "firebase": "^4.12.1",
     "form-serialize": "^0.7.2",
     "prop-types": "^15.6.1",
@@ -11,6 +10,9 @@
     "react-dom": "^16.3.1",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1"
   },
   "scripts": {
     "start": "react-scripts start",

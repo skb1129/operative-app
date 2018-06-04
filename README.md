@@ -10,6 +10,16 @@ These instructions will get you a copy of the project up and running on your loc
 
 You need `node` and `npm` installed on your system to run the application.
 
+You need to have a **Firebase** project set up online and make sure it has a `messages` object already. The rules should be as follows:
+```
+{
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+```
+
 ### Installing
 
 Install `yarn` using `npm`:
@@ -17,6 +27,7 @@ Install `yarn` using `npm`:
 ```
 npm i -g yarn
 ```
+Add your **Firebase** project `config` to `src/components/Interface.js` file.
 
 Change to the project directory and run the following command to run the application:
 
